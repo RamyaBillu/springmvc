@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!-- <bean id="dev" class="com.spring.Delivery">
+    collaborators and configuration for this bean go here
+    <property name="address" value="tirupati"></property>
+  </bean>
+  <bean id="prod" class="com.spring.Product1" scope="prototype">
+    <property name="name" value="tv"></property>
+    <property name="price" value="200"></property>
+    <property name="d" ref="dev"></property>
+    
+  </bean> -->
+  <bean id="product-1" class="com.spring.Product">
+		<property name="id" value="101" />
+		<property name="name" value="Shirt" />
+		<property name="price" value="500.0" />
+	</bean>
+
+	<bean id="address" class="com.spring.Address"
+		scope="singleton">
+		<property name="address1">
+			<value>SBR Horizon, Bengaluru</value>
+		</property>
+	</bean>
+
+	<bean id="deliveryAddress"
+		class="com.spring.DeliveryAddress">
+		<property name="address" ref="address"> 
+		</property> 
+	</bean>
+
+	<bean id="cart" class="com.spring.Cart">
+		<property name="id" value="101" />
+		<property name="name" value="Avacado" />
+		<property name="products">
+			<list>
+				<ref bean="product-1" />
+			</list>
+			
+		</property>
+	</bean>
+
+	<!-- <bean id="cart-1" class="com.spring.Cart">
+		<property name="id" value="101" />
+		<property name="name" value="Avacado" />
+		<property name="products">
+			<list>
+				<ref bean="product-1" />
+			</list>
+		</property>
+	</bean> -->
+
+
+	
+
+	<!-- <bean id="alternateDeliveryAddress"
+		class="com.spring.AlternateDeliveryAddress"
+		autowire="constructor">
+		
+	</bean> -->
+
+	<bean id="dbConnection" class="com.spring.DBConnection"
+		factory-method="getInstanace">
+	</bean>
+
+	<bean id="connection-1" class="java.sql.Connection"
+		factory-bean="dbConnection" factory-method="getConnection"></bean>
+
+
+</beans>
+
+  
+

@@ -1,0 +1,43 @@
+package threads_Dec_6_2023;
+import java.lang.*; 
+
+
+public class Functions implements Runnable {
+
+
+	// Java program to illustrate join() method in Java 
+
+
+		public void run() 
+		{ 
+			Thread t = Thread.currentThread(); 
+			System.out.println("Current thread: "
+							+ t.getName()); 
+
+			// checks if current thread is alive 
+			System.out.println("Is Alive? " + t.isAlive()); 
+		} 
+
+		public static void main(String args[]) throws Exception 
+		{ 
+			Thread t = new Thread(new Functions()); 
+			t.start(); 
+
+			// Waits for 1000ms this thread to die. 
+			t.yield();
+			t.join(1000);
+
+		
+			System.out.println("\nJoining after 1000"
+							+ " milliseconds: \n"); 
+			t.sleep(1000);
+			System.out.println("Current thread: "
+							+ t.getName()); 
+
+			// Checks if this thread is alive 
+			System.out.println("Is alive? " + t.isAlive()); 
+		} 
+	}
+
+
+
